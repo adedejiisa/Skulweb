@@ -1,114 +1,961 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Adedeji • Portfolio</title>
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aura Academy - Home</title>
   <style>
-    :root {
-      --bg: #0f0f17;
-      --bg-dark: #0a0a11;
-      --text: #e0e0ff;
-      --text-light: #a0a0cc;
-      --accent: #7c3aed;
-      --accent-dark: #5b21b6;
-      --card: #161624;
-      --border: #2a2a3f;
-    }
+:root {
+  --primary: #1A237E;
+  --secondary: #FFC107;
+  --accent: #F5F5F5;
+  --success: #2E7D32;
+  --text-light: #FFFFFF;
+  --shadow: rgba(0, 0, 0, 0.12);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* Modern reset & base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    /* ─── Navigation ─── */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(15, 15, 23, 0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.4s;
-    }
+body {
+  margin: 0;
+  background: var(--accent);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  width: 100%;
+}
 
-    nav.scrolled {
-      background: rgba(10, 10, 17, 0.95);
-      padding: 0.8rem 0;
-    }
+/* Custom font */
+@font-face {
+  font-family: "Golden";
+  src: url("Golden.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.2rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 5%;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: all 0.3s ease;
+}
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 800;
-      background: linear-gradient(90deg, #a78bfa, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.header:hover {
+  box-shadow: 0 6px 20px var(--shadow);
+}
 
-    .nav-links {
-      display: flex;
-      gap: 2.8rem;
-      list-style: none;
-    }
+.brand {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 900;
+  font-family: "Golden", sans-serif;
+  color: var(--success);
+  letter-spacing: -0.5px;
+  transition: transform 0.3s ease;
+}
 
-    .nav-links a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      position: relative;
-    }
+.brand:hover {
+  transform: scale(1.05);
+}
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background: var(--accent);
-      transition: width 0.35s ease;
-    }
+ul {
+  display: flex;
+  list-style-type: none;
+  gap: 2rem;
+  align-items: center;
+}
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+li {
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: white;
-    }
+li:hover {
+  color: var(--success);
+  transform: translateY(-2px);
+}
 
-    /* ─── Hero ─── */
-    #home {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 0 5%;
-      background: linear-gradient(to bottom right, #0f0f17, #131324);
-      justify-content: center;
-      text-align: center;
+li::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--success);
+  transition: width 0.3s ease;
+}
+
+li:hover::after {
+  width: 100%;
+}
+
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-cta-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--success);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.header-cta-btn:hover {
+  background: #1e5c22;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+}
+h2{
+  text-align: center ;
+  color:var(--primary);
+}
+.hero {
+  min-height: 100vh;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+  background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.65)),
+              url("bg.jpeg") center/cover no-repeat fixed;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 5%;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+  animation: subtlePulse 15s ease-in-out infinite;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.subtle {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  animation: fadeInUp 1.4s 0.2s ease forwards;
+  opacity: 0;
+}
+
+.heading-subtle {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.cta-btn {
+  padding: 18px 36px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--success);
+  color: var(--secondary);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+  animation: fadeInUp 1.6s 0.4s ease forwards;
+  opacity: 0;
+}
+
+.cta-btn:hover {
+  background: #1e5c22;
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(46, 125, 50, 0.5);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+
+/* About */
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about-text {
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px var(--shadow);
+  transition: all 0.4s ease;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.about-text:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px var(--shadow);
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow);
+  transition: transform 0.6s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.04);
+}
+
+.about-i {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Awards */
+.awards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.award {
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  background: var(--secondary);
+  box-shadow: 0 10px 25px var(--shadow);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  animation: scaleUp 0.8s ease forwards;
+}
+
+.award:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 25px 50px var(--shadow);
+  background: #F4E6B9;
+}
+
+.award-head {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Apply */
+.apply {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.apply-step {
+  padding: 2.5rem 1.5rem;
+  border-radius: 20px;
+  border: 2px solid var(--primary);
+  background: #fff;
+  box-shadow: 0 10px 25px var(--shadow);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.apply-step::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 40px;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.8s;
+}
+
+.apply-step:hover::before {
+  left: 150%;
+}
+
+.apply-step:hover {
+  border-color: var(--success);
+  box-shadow: 0 20px 40px rgba(46, 125, 50, 0.2);
+  transform: translateY(-10px);
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 900;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 6px 15px rgba(26, 35, 126, 0.3);
+  transition: transform 0.4s ease;
+}
+
+.apply-step:hover .number {
+  transform: scale(1.15) rotate(8deg);
+}
+
+.apply-head {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+/* Footer */
+.footer {
+  background: var(--primary);
+  color: var(--text-light);
+  padding: 5rem 5% 3rem;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer input[type="email"] {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 9999px;
+  width: 100%;
+  max-width: 420px;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer input[type="email"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.4);
+  transform: scale(1.02);
+}
+
+.footer input[type="button"] {
+  padding: 16px 40px;
+  border: none;
+  border-radius: 9999px;
+  background: var(--success);
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer input[type="button"]:hover {
+  background: #1e5c22;
+  transform: translateY(-4px);
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 1024px) {
+  .header {
+    padding: 1rem 4%;
+  }
+  ul {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    /*flex-direction: column;*/
+    gap: 1rem;
+    padding: 1.25rem 5%;
+  }
+  
+  ul {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  .menu-c{
+    display: none;
+   flex-direction: column;
+  }
+  .hero {
+    min-height: 90vh;
+    padding: 3rem 8%;
+  }
+  
+  .about,
+  .awards,
+  .apply {
+    padding: 4rem 5%;
+  }
+  
+  .heading {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem 5%;
+  }
+  
+  .hero {
+    padding: 2rem 5%;
+  }
+  
+  .cta-btn {
+    padding: 16px 28px;
+    font-size: 1.15rem;
+  }
+  
+  .footer input[type="email"] {
+    max-width: 100%;
+  }
+}
+.menu-c {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--secondary);
+  padding: 1.5rem 5%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  z-index: 999;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+/* When menu is open */
+.menu-c.active {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hamburger icon */
+.menu {
+  display: block;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.menu:hover {
+  transform: scale(1.1);
+}
+
+/* Nav styling inside mobile menu */
+.menu-c nav ul {
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.menu-c nav li {
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 100%;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(26, 35, 126, 0.12);
+}
+
+.menu-c nav li:last-child {
+  border-bottom: none;
+}
+
+.menu-c .header-cta {
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.menu-c .header-cta-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem 5%;
+  }
+  
+  .brand {
+    font-size: 1.4rem;
+  }
+  
+  .menu svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: block;
+  }
+  
+  .menu-c {
+    display: none;
+  }
+  
+  
+  .header > ul {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu {
+    display: none;      
+  }
+  
+  .menu-c {
+    display: flex !important;
+    position: static; 
+    width: auto;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+    transform: none;
+    opacity: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  
+  .menu-c nav ul {
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  .menu-c nav li {
+    border-bottom: none;
+    padding: 0;
+    font-size: 1.05rem;
+  }
+  
+  .menu-c .header-cta {
+    margin-top: 0;
+  }
+  
+  .menu-c .header-cta-btn {
+    width: auto;
+    padding: 0.8rem 1.6rem;
+  }
+}
+a{
+  text-decoration: none;
+  color: #222;
+}
+/* =============================================
+   ENROLLMENT MODAL
+============================================= */
+
+.enroll-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.enroll-modal.active {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 35, 126, 0.75);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 520px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.enroll-modal.active .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.25s;
+}
+
+.modal-close-btn:hover {
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+  color: var(--primary);
+  font-size: 2.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+  color: #555;
+  font-size: 1.05rem;
+}
+
+.enroll-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.98rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.25s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--success);
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15);
+}
+
+.required {
+  color: #e63946;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.form-row .half {
+  flex: 1;
+  min-width: 160px;
+}
+
+.submit-btn {
+  margin-top: 1.5rem;
+  padding: 16px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: var(--success);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  background: #1e5c22;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.35);
+}
+
+.form-success {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--success);
+}
+
+.form-success h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.8rem;
+  }
+}
+</style>
+</head>
+
+<body>
+  <header class="header">
+    <p class="brand">AURA ACADEMY</p>
+    <p class="menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+    </p>
+    <div class="menu-c">
+    <nav>
+      <ul>
+      <li><a href="#hero">Home</a></li>
+      <li> <a href="#about">About</a></li>
+      <li><a href="#awards">Achievements</a></li>
+      <li><a href="#footer">Contact</a></li>
+      </ul>
+    </nav>
+   <div class="header-cta">
+    <button class="header-cta-btn ctas" id="open-modal">Enrol Now</button>
+    </div>
+    </div>
+  </header>
+</body>
+<main>
+  <section class="hero" id="hero">
+    <p class="heading">Igniting Curiosity, <span class="heading-subtle">Defining Futures</span></p>
+    <p class="subtle">Where curiosity meets excellence. Discover a school that inspires students to dream big and achieve more.</p>
+    <div class="cta">
+      <button class="cta-btn ctas">Enroll Now</button>
+    </div>
+  </section>
+  
+  <section class="about" id="about">
+    <div class="about-img">
+      <img src="skul.jpeg" alt="" class="about-i">
+    </div>
+    <div class="about-text">
+    <p>
+    <strong>About the School</strong><br>
+      Aura Academy was founded in 1992 Under the institution if the 6 days adventist, it was later registered to the federal Government im the 29th December 1995. <br> It has achieved a lot of academic excellence, ranging from 2000 - till present
+    </p>
+    </div>
+  </section>
+  
+  <section class="excellence" id="awards">
+    <h2>Some of Our Awards</h2>
+    <div class="awards">
+      <div class="award">
+  <p class="award-head">Academic Excellence Award</p>
+  <p class="award-reason">Presented to the student who has consistently demonstrated outstanding academic performance across all subjects.</p>
+</div>
+
+<div class="award">
+  <p class="award-head">Leadership Award</p>
+  <p class="award-reason">Recognizing a student who has shown exceptional leadership qualities, guiding peers and contributing positively to school activities.</p>
+</div>
+
+<div class="award">
+  <p class="award-head">Creativity & Innovation Award</p>
+  <p class="award-reason">Awarded to the student who has displayed remarkable creativity and innovative thinking in projects, arts, or problem-solving.</p>
+</div>
+
+<div class="award">
+  <p class="award-head">Community Service Award</p>
+  <p class="award-reason">Honoring the student who has dedicated time and effort to serving the school and local community with compassion and responsibility.</p>
+</div>
+    </div>
+  </section>
+  
+  <section class="application">
+    <h2>How to Apply</h2>
+    <div class="apply">
+<div class="apply-step">
+  <span class="number">1</span>
+  <p class="apply-head">Fill Out Application Form</p>
+  <p class="apply-subhead">Complete the online or paper form with accurate personal and academic details.</p>
+</div>
+
+<div class="apply-step">
+  <span class="number">2</span>
+  <p class="apply-head">Submit Required Documents</p>
+  <p class="apply-subhead">Provide transcripts, certificates, identification, and any other requested materials.</p>
+</div>
+
+<div class="apply-step">
+  <span class="number">3</span>
+  <p class="apply-head">Pay Application Fee</p>
+  <p class="apply-subhead">Make the necessary payment through the approved channels to validate your application.</p>
+</div>
+
+<div class="apply-step">
+  <span class="number">4</span>
+  <p class="apply-head">Attend Interview or Entrance Exam</p>
+  <p class="apply-subhead">Participate in the scheduled interview or test as part of the admission process.</p>
+</div>
+    </div>
+  </section>
+  
+  <section class="footer" id="footer">
+    <p class="heading">Take a step towards a brighter future, apply today and become part of a community that valies excellence and inovations.</p>
+    <h2>Suscribe To Our Newsletter</h2>
+    <form>
+    <input type="email" name="" id="">
+    <input type="button" value="Suscribe">
+    </form>
+    <div class="contacts">
+      <p class="contact"><strong>WhatsApp:</strong>+234 554 765 0987</p>
+      <p class="contact"><strong>Email:</strong>info@auraacdemy.edu.ng</p>
+      <p class="contacy"><strong>Adress:</strong> Oshiele, Lagos state, Nigeria</p>
+    </div>
+  </section>
+  
+  <!-- Modal -->
+<div class="enroll-modal" id="enrollModal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close-btn" id="closeModal">×</button>
+    
+    <div class="modal-header">
+      <h2>Enroll at Aura Academy</h2>
+      <p>Let's get started with your admission process</p>
+    </div>
+    
+    <form class="enroll-form" id="enrollForm">
+      <div class="form-group">
+        <label for="fullName">Full Name <span class="required">*</span></label>
+        <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="+234 800 000 0000">
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" min="10" placeholder="15">
+        </div>
+        <div class="form-group half">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+           <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="program">Interested Program / Class <span class="required">*</span></label>
+        <select id="program" name="program" required>
+          <option v      text-align: center;
     }
 
     .hero-content {
